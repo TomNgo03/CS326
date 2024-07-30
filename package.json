@@ -22,17 +22,13 @@
     "email": "tungngo@umass.edu",
     "url": ""
   },
-  "contributors": [
-
-  ],
+  "contributors": [],
   "scripts": {
+    "start": "http-server src/frontend -p 3000 -c-1 -o -s",
     "dev": "",
     "test": ""
   },
-  "dependencies": {
-
-  },
   "devDependencies": {
-
+    "http-server": "^14.1.1"
   }
 }
