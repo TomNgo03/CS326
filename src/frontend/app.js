@@ -7,14 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
         displayCartItems();
     } else if (window.location.pathname.includes('profile.html')) {
         displayUserProfile();
+    } else if (window.location.pathname.includes('checkout.html')) {
+        // No specific action needed for checkout.html load
     }
 });
 
 const mockData = {
     products: [
-        { id: 1, name: "Product 1", description: "Description 1", price: 10, image: "placeholder.jpg" },
-        { id: 2, name: "Product 2", description: "Description 2", price: 20, image: "placeholder.jpg" },
-        { id: 3, name: "Product 3", description: "Description 3", price: 30, image: "placeholder.jpg" }
+        { id: 1, name: "Product 1", description: "Description 1", price: 10, image: "pages/2.webp" },
+        { id: 2, name: "Product 2", description: "Description 2", price: 20, image: "pages/2.webp" },
+        { id: 3, name: "Product 3", description: "Description 3", price: 30, image: "pages/2.webp" }
     ]
 };
 
@@ -54,12 +56,13 @@ function displayCartItems() {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsSection = document.getElementById('cart-items');
     cartItemsSection.innerHTML = '';
-    cartItems.forEach(item => {
+    cartItems.forEach((item, index) => {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <h2>${item.name}</h2>
             <p>$${item.price}</p>
+            <button onclick="removeFromCart(${index})">Remove</button>
         `;
         cartItemsSection.appendChild(cartItem);
     });
@@ -91,6 +94,13 @@ function addToCart(productId) {
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
     alert('Product added to cart');
+}
+
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCartItems();
 }
 
 function proceedToCheckout() {
