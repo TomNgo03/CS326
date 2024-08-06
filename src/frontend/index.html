@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shopping Website</title>
+    <title>Home - Online Shopping</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Online Shopping Website</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="cart.html">Cart</a>
-            <a href="profile.html">Profile</a>
-        </nav>
-    </header>
-    <main>
-        <section id="search-bar">
-            <input type="text" id="search-input" placeholder="Search for products...">
-            <button onclick="searchProducts()">Search</button>
-        </section>
-        <section id="product-catalog">
-            <!-- Products will be dynamically populated here -->
-        </section>
-    </main>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="profile.html">Profile</a>
+        <a href="add-product.html">Add Product</a>
+        <span id="user-info"></span>
+    </nav>
+
+    <div class="container">
+        <h1>Our Products</h1>
+        <div id="product-catalog"></div>
+    </div>
+
+    <footer>
+        &copy; 2024 Online Shopping. All rights reserved.
+    </footer>
+
     <script src="app.js"></script>
 </body>
 </html>
-
