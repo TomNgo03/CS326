@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - Online Shopping</title>
+    <title>Cart - Online Shopping</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="profile.html">Profile</a>
-    </nav>
-
-    <div class="container">
-        <h1>Your Cart</h1>
+    <header>
+        <h1>Online Shopping</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="add-product.html">Add Product</a></li>
+                <li><a href="user-products.html">My Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>My Cart</h2>
         <div id="cart-items"></div>
-        <button onclick="proceedToCheckout()">Proceed to Checkout</button>
-    </div>
-
+    </main>
     <footer>
-        &copy; 2024 Online Shopping. All rights reserved.
+        <p>&copy; 2024 Online Shopping</p>
     </footer>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

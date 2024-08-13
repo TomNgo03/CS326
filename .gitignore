@@ -4,3 +4,5 @@ node_modules/
 /src/backend/config.js
 products/
 users/
+orders/
+backend/node_modules
