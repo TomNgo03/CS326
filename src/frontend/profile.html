@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Shopping</title>
+    <title>Profile - Online Shopping</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,14 +14,19 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="cart.html">Cart</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a id="profile-link" href="profile.html">Profile</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h2>Welcome to Online Shopping</h2>
+        <h2>Profile</h2>
+        <form id="profile-form">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <button type="submit">Update Profile</button>
+        </form>
+        <div id="profile-result"></div>
     </main>
     <script src="script.js"></script>
 </body>
