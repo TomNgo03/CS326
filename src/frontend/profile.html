@@ -19,15 +19,20 @@
     </header>
     <main>
         <h2>Profile</h2>
-        <form id="profile-form">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+        <form id="profile-form" class="centered-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
             <button type="submit">Update Profile</button>
+            <div id="profile-result"></div>
         </form>
-        <div id="profile-result"></div>
     </main>
+    <footer>
+        <p>&copy; 2024 Online Shopping</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

@@ -177,8 +177,8 @@ async function loadUserProductsPage() {
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
                 <p>Price: $${product.price}</p>
-                <button onclick="editProduct('${product._id}', '${product._rev}', '${product.name}', '${product.description}', ${product.price})">Edit</button>
-                <button onclick="deleteProduct('${product._id}', '${product._rev}')">Delete</button>
+                <button class="edit" onclick="editProduct('${product._id}', '${product._rev}', '${product.name}', '${product.description}', ${product.price})">Edit</button>
+                <button class="delete" onclick="deleteProduct('${product._id}', '${product._rev}')">Delete</button>
             </div>
         `).join('');
     } catch (error) {
@@ -207,7 +207,7 @@ async function loadProductDetailsPage() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Price: $${product.price}</p>
-            <button onclick="addToCart('${product._id}', '${product.name}', ${product.price})">Add to Cart</button>
+            <button class="edit" onclick="addToCart('${product._id}', '${product.name}', ${product.price})">Add to Cart</button>
         `;
     } catch (error) {
         console.error('Error fetching product details:', error);
@@ -247,23 +247,26 @@ function loadAddProductPage() {
     });
 }
 
-// Edit Product
 function editProduct(id, rev, name, description, price) {
     const mainContent = document.querySelector('main');
     mainContent.innerHTML = `
         <h2>Edit Product</h2>
-        <form id="edit-product-form">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" value="${name}" required><br>
-            <label for="description">Description:</label><br>
-            <input type="text" id="description" name="description" value="${description}" required><br>
-            <label for="price">Price:</label><br>
-            <input type="number" id="price" name="price" value="${price}" required><br><br>
-            <button type="submit">Update Product</button>
+        <form id="edit-product-form" class="centered-form">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" value="${name}" required>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" value="${description}" required>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="${price}" required>
+
+            <button type="submit" class="edit">Update Product</button>
+            <div id="edit-product-result"></div>
         </form>
-        <div id="edit-product-result"></div>
     `;
 
+    // Add the event listener for form submission
     const form = document.getElementById('edit-product-form');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -281,7 +284,6 @@ function editProduct(id, rev, name, description, price) {
 
             if (response.ok) {
                 result.innerHTML = `<p>Product updated successfully!</p>`;
-                loadUserProductsPage(); // Reload the user's products page
             } else {
                 throw new Error('Failed to update product');
             }
@@ -291,6 +293,7 @@ function editProduct(id, rev, name, description, price) {
         }
     });
 }
+
 
 // Delete Product
 async function deleteProduct(id, rev) {
@@ -340,7 +343,7 @@ function loadCartPage() {
             <div class="cart-item">
                 <h3>${item.name}</h3>
                 <p>Price: $${item.price}</p>
-                <button onclick="removeFromCart('${item.id}')">Remove</button>
+                <button class="remove" onclick="removeFromCart('${item.id}')">Remove</button>
             </div>
         `).join('');
     } else {
