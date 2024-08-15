@@ -1,3 +1,4 @@
+require('dotenv').config();
 const PouchDB = require('pouchdb-node');
 
 const productsDb = new PouchDB('products');

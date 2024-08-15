@@ -1,12 +1,35 @@
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const createUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    res.status(201).json(user);
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
+    res.status(201).json({ token, user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
+
+const loginUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.body.email);
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token, user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const logoutUser = (req, res) => {
+  res.json({ msg: 'User logged out successfully' });
 };
 
 const getUsers = async (req, res) => {
@@ -47,6 +70,8 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   createUser,
+  loginUser,
+  logoutUser,
   getUsers,
   getUserById,
   updateUser,
